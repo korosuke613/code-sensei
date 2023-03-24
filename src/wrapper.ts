@@ -2,7 +2,7 @@ import { isAxiosError } from "axios";
 
 export const execOpenAIAPI = async <T>(callback: () => T): Promise<T> => {
   try {
-    return callback();
+    return await callback();
   } catch (error) {
     if (isAxiosError(error)) {
       // Consider adjusting the error handling logic for your use case
