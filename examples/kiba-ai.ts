@@ -12,7 +12,7 @@ const main = async () => {
       star: number;
       title: string;
       legend: string;
-      description: string;
+      description_by_kiba: string;
     },
   ];
 
@@ -57,6 +57,11 @@ const main = async () => {
     .sort((a, b) => {
       // star順にする
       return a.star > b.star ? -1 : 1;
+      // if (a.legend === null) return -1;
+      // return a.legend.length + a.description_by_kiba.length >
+      //   b.legend.length + b.description_by_kiba.length
+      //   ? 1
+      //   : -1;
     })
     .map((k, index) => {
       return {
@@ -64,12 +69,16 @@ const main = async () => {
         // content: `【伝説${index}】:\n${k.legend}\n\n【解説${index}:\nきばちゃん「\n${k.description}\n」`,
         // content: `【伝説${index}】:\n${k.legend}\n\nきばちゃん: \n${k.description}`,
         // content: `【伝説${index}】:\n${k.legend}\n\nきばちゃん「\n${k.description}\n」`,
-        content: `【伝説（例${index}）】:\n${k.legend}\n\n【きばちゃんによる${responseWord}（例${index}）】「\n${k.description}\n」`,
+        content: `【伝説（例${index}）】:\n${k.legend}\n\n【きばちゃんによる${responseWord}（例${index}）】「\n${k.description_by_kiba}\n」`,
       };
     });
 
   while (sensei.getBaseNumTokens() > 3400) {
     sensei.chatContexts.pop();
+  }
+
+  if (isDebugLog) {
+    debug(JSON.stringify(sensei.chatContexts, null, 2));
   }
 
   if (isDebugLog) {

@@ -227,6 +227,10 @@ export class Sensei {
       this.prevMessages,
     );
 
+    // if (this.isDebugLog) {
+    //   debug(JSON.stringify(this.prevMessages, null, 2));
+    // }
+
     const answer = await execOpenAIAPI(async () => {
       const response = await this.openai.createChatCompletion({
         ...(<CreateChatCompletionRequest>this.baseCreateChatCompletionRequest),
