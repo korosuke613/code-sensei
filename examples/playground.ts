@@ -31,7 +31,7 @@ const main = async () => {
   sensei.addCodeContexts(io.codes);
   console.log(`\nデフォルトトークン数: ${sensei.getBaseNumTokens()}\n`);
 
-  console.log(`質問:`);
+  console.log("質問:");
   reader.on("line", async (line: string) => {
     const { answer, numTokens, reduceNumTokens } = await sensei.ask(line);
     console.log(`\n回答:\n${answer}\n`);
@@ -52,7 +52,7 @@ const main3 = async () => {
     input: process.stdin,
   });
 
-  console.log(`質問:`);
+  console.log("質問:");
   reader.on("line", async (line: string) => {
     const answer = await sensei.askWithFineTuned(line);
     console.log(`\n回答:\n${answer}\n`);
