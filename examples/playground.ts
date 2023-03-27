@@ -2,7 +2,7 @@ import { Sensei, IO } from "../src";
 import { debug } from "../src/wrapper";
 
 const main = async () => {
-  const isDebugLog = false;
+  const isDebugLog = true;
 
   const sensei = new Sensei();
   const io = new IO(isDebugLog);
@@ -29,6 +29,9 @@ const main = async () => {
   sensei.isDebugLog = isDebugLog;
 
   sensei.addCodeContexts(io.codes);
+  // if (isDebugLog) {
+  //   debug(JSON.stringify(sensei.chatContexts, null, 2));
+  // }
   console.log(`\nデフォルトトークン数: ${sensei.getBaseNumTokens()}\n`);
 
   console.log("質問:");
